@@ -13,69 +13,68 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener; // [cite: 167, 168, 169, 170, 171]
+import java.awt.event.ActionListener;
 
-public class ManajemenNilaiSiswaApp extends JFrame { // [cite: 39]
+public class ManajemenNilaiSiswaApp extends JFrame {
 
     private JTextField txtNama;
     private JTextField txtNilai;
     private JComboBox<String> cmbMatkul;
     private JTable tableData;
     private DefaultTableModel tableModel;
-    private JTabbedPane tabbedPane; // [cite: 47-53]
+    private JTabbedPane tabbedPane;
 
     public ManajemenNilaiSiswaApp() {
-        // 1. Konfigurasi Frame Utama [cite: 152]
+        
         setTitle("Aplikasi Manajemen Nilai Siswa");
-        setSize(500, 450); // Tinggi ditambah sedikit untuk tombol hapus
+        setSize(500, 450);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // 2. Inisialisasi Tabbed Pane [cite: 156, 157]
+        
         tabbedPane = new JTabbedPane();
 
-        // 3. Membuat Panel Tab 1 (Input) [cite: 158]
+        
         JPanel panelInput = createInputPanel();
         tabbedPane.addTab("Input Data", panelInput);
 
-        // 4. Membuat Panel Tab 2 (Tabel) [cite: 159]
+        
         JPanel panelTabel = createTablePanel();
         tabbedPane.addTab("Daftar Nilai", panelTabel);
 
-        add(tabbedPane); // [cite: 160]
+        add(tabbedPane);
     }
 
     private JPanel createInputPanel() { // [cite: 58]
         JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10)); // Ubah row jadi 5 untuk tombol reset
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Komponen Nama
+     
         panel.add(new JLabel("Nama Siswa:"));
         txtNama = new JTextField();
         panel.add(txtNama);
 
-        // Komponen Mata Pelajaran
+      
         panel.add(new JLabel("Mata Pelajaran:"));
         String[] matkul = {"Matematika Dasar", "Bahasa Indonesia", "Algoritma dan Pemrograman I", "Praktikum Pemrograman II"};
         cmbMatkul = new JComboBox<>(matkul);
         panel.add(cmbMatkul);
 
-        // Komponen Nilai
+    
         panel.add(new JLabel("Nilai (0-100):"));
         txtNilai = new JTextField();
         panel.add(txtNilai);
 
-        // Tombol Simpan
+  
         JButton btnSimpan = new JButton("Simpan Data");
         panel.add(new JLabel("")); 
         panel.add(btnSimpan);
         
-        // TUGAS 4: Tombol Reset 
         JButton btnReset = new JButton("Reset Form");
         panel.add(new JLabel("")); // Placeholder
         panel.add(btnReset);
 
-        // Event Tombol Simpan
+       
         btnSimpan.addActionListener(e -> prosesSimpan());
         
         // Event Tombol Reset
